@@ -30,6 +30,6 @@ int main()
     GraphIO::write(GA, "output-planar-protein.svg", GraphIO::drawSVG);
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( end - start ).count();
-    std::cout << "The program took " << duration << " seconds";
+    std::cout << "The program took " << duration << " ms";
     return 0;
 }

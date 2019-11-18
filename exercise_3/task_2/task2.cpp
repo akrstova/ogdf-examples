@@ -54,7 +54,7 @@ int main()
     	saveGraph(C, i);
     	getDegreeDistribution(C);
 		NodeArray<int> narr;
-			List<node> nodes;
+		List<node> nodes;
 		connectedComponents(G, narr, &nodes);     // Causes segmentation fault
     }
 

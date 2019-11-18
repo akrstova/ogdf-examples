@@ -31,7 +31,7 @@ int main()
     SL.call(GA);
     GraphIO::write(GA, "output-hierarchical-crack.svg", GraphIO::drawSVG);
     auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::seconds>( end - start ).count();
-    std::cout << "The program took " << duration << " seconds";
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( end - start ).count();
+    std::cout << "The program took " << duration << " ms";
     return 0;
 }
