@@ -4,18 +4,19 @@
 #include <ogdf/layered/OptimalHierarchyLayout.h>
 #include <ogdf/layered/OptimalRanking.h>
 #include <ogdf/layered/SugiyamaLayout.h>
+
 using namespace ogdf;
-int main()
-{
+
+int main() {
     auto start = std::chrono::high_resolution_clock::now();
     Graph G;
     GraphAttributes GA(G,
-      GraphAttributes::nodeGraphics |
-      GraphAttributes::edgeGraphics |
-      GraphAttributes::nodeLabel |
-      GraphAttributes::edgeStyle |
-      GraphAttributes::nodeStyle |
-      GraphAttributes::nodeTemplate);
+                       GraphAttributes::nodeGraphics |
+                       GraphAttributes::edgeGraphics |
+                       GraphAttributes::nodeLabel |
+                       GraphAttributes::edgeStyle |
+                       GraphAttributes::nodeStyle |
+                       GraphAttributes::nodeTemplate);
     if (!GraphIO::read(GA, G, "crack.gml", GraphIO::readGML)) {
         std::cerr << "Could not load crack.gml" << std::endl;
         return 1;
@@ -31,7 +32,7 @@ int main()
     SL.call(GA);
     GraphIO::write(GA, "output-hierarchical-crack.svg", GraphIO::drawSVG);
     auto end = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( end - start ).count();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
     std::cout << "The program took " << duration << " ms";
     return 0;
 }
