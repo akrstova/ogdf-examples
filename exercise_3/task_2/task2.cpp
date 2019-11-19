@@ -13,21 +13,17 @@ void getDegreeDistribution(ClusterGraph C) {
     Array<int> arr;
     degreeDistribution(C, arr);
     Array<int>::iterator ptr;
-    std::cout << "Degree distribution: " << std::endl;
+    std::cout << "The array elements are: " << std::endl;
     for (ptr = arr.begin(); ptr != arr.end(); ptr++) {
         std::cout << *ptr << std::endl;
     }
 }
 
 void getConnectedComponents(ClusterGraph C) {
-    NodeArray<int> arr;
+    auto narr = new NodeArray<int>(C);
     List <node> nodes;
-    connectedComponents(C, arr);
-    NodeArray<int>::iterator ptr;
-    std::cout << "Connected components: " << std::endl;
-    for (ptr = arr.begin(); ptr != arr.end(); ptr++) {
-        std::cout << *ptr << std::endl;
-    }
+    std::cout << "The connected components are:" << std::endl;
+    std::cout << connectedComponents(C, *narr, &nodes) << std::endl;
 }
 
 void saveGraph(ClusterGraph C, int graph_number) {
@@ -52,11 +48,19 @@ int main() {
         std::cout << "Graph " << i << " has " << C.numberOfClusters() << " clusters." << std::endl;
         saveGraph(C, i);
         getDegreeDistribution(C);
-        NodeArray<int> narr;
-        List <node> nodes;
-        connectedComponents(G, narr, &nodes);     // Causes segmentation fault
+        getConnectedComponents(C);
     }
 
+    std::cout << "--------------------------------------" << std::endl;
 
+    std::cout << "Max. 5 clusters setting " << std::endl;
+    for (int i = 0; i < 10; i++) {
+        ClusterGraph C(G);
+        randomClusterGraph(C, G, 4);
+        std::cout << "Graph " << i << " has " << C.numberOfClusters() << " clusters." << std::endl;
+        saveGraph(C, i);
+        getDegreeDistribution(C);
+        getConnectedComponents(C);
+    }
     return 0;
 }
